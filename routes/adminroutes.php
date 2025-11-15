@@ -365,5 +365,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'checkzoneaccess']],
         Route::get('/dashboard/getFoodomaaNews', 'FoodomaaNewsController@getFoodomaaNews')->name('admin.getFoodomaaNews');
         Route::post('/dashboard/makeFoodomaaNewsRead', 'FoodomaaNewsController@makeFoodomaaNewsRead')->name('admin.makeFoodomaaNewsRead');
     });
+
+    /* Subscription Management Routes */
+    Route::group(['middleware' => 'role:Admin'], function () {
+        Route::resource('subscription-plans', 'SubscriptionPlanController');
+        Route::patch('subscription-plans/{subscriptionPlan}/toggle', 'SubscriptionPlanController@toggle')->name('subscription-plans.toggle');
+        
+        Route::get('subscriptions', 'CustomerSubscriptionController@index')->name('subscriptions.index');
+        Route::get('subscriptions/{subscription}', 'CustomerSubscriptionController@show')->name('subscriptions.show');
+        Route::patch('subscriptions/{subscription}/pause', 'CustomerSubscriptionController@pause')->name('subscriptions.pause');
+        Route::patch('subscriptions/{subscription}/resume', 'CustomerSubscriptionController@resume')->name('subscriptions.resume');
+        Route::delete('subscriptions/{subscription}/cancel', 'CustomerSubscriptionController@cancel')->name('subscriptions.cancel');
+    });
 });
 /* END Admin Routes */
