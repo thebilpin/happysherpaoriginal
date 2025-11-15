@@ -2,12 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/cgvcol3mih0s/public_html/
-    - /bin/cp -R .cpanel.yml $DEPLOYPATH
-    - /bin/cp -R app $DEPLOYPATH
-    - /bin/cp -R resources $DEPLOYPATH
-    - /bin/cp -R routes $DEPLOYPATH
-    - /bin/cp -R config $DEPLOYPATH
-    - /bin/cp -R public $DEPLOYPATH
-    - /bin/cp -R bootstrap $DEPLOYPATH
-    - /bin/cp -R database $DEPLOYPATH
-    - /bin/cp -R storage $DEPLOYPATH
+    - /bin/cp -Rf app/* $DEPLOYPATH/app/
+    - /bin/cp -Rf resources/* $DEPLOYPATH/resources/
+    - /bin/cp -Rf routes/* $DEPLOYPATH/routes/
+    - /bin/cp -f bootstrap/cache/*.php $DEPLOYPATH/bootstrap/cache/ || true
