@@ -15,7 +15,7 @@ class PageController extends Controller
 {
     public function indexPage()
     {
-        return redirect()->route('get.login');
+        return view('homepage');
     }
 
     public function loginPage()
